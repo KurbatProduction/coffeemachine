@@ -8,17 +8,15 @@ import com.coffeemachine.core.repository.RecipeRepository;
 import com.coffeemachine.core.service.CoffeeMachineService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class CoffeeMachineServiceImpl implements CoffeeMachineService {
 
-    private final DrinkRepository drinkRepository;
-    private final IngredientRepository ingredientRepository;
-    private final OrderRepository orderRepository;
-    private final RecipeRepository recipeRepository;
+//    private final DrinkRepository drinkRepository;
+//    private final IngredientRepository ingredientRepository;
+//    private final OrderRepository orderRepository;
+//    private final RecipeRepository recipeRepository;
 
     @Override
     public RecipeDto getDrink(String name) {

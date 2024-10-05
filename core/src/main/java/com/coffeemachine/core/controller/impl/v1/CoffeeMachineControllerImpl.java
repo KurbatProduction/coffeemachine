@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CoffeeMachineControllerImpl implements CoffeeMachineController {
 
-    private final CoffeeMachineService coffeeMachineService;
+//    private final CoffeeMachineService coffeeMachineService;
 
     @Override
     public ResponseEntity<RecipeDto> getDrink(String name) {

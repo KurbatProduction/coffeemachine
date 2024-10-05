@@ -11,9 +11,9 @@ import lombok.Getter;
 public class IngredientDto {
 
     @NotBlank
-    private final String name;
+    private String name;
 
     @NotNull
     @Positive
-    private final Integer amount;
+    private Integer amount;
 }
