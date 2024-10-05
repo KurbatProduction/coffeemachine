@@ -4,28 +4,23 @@ import com.coffeemachine.api.v1.dto.RecipeDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@RequestMapping("/api/v1")
-public interface CoffeeMachineController {
+@RequestMapping("/api/v1/drink")
+@Tag(name = "Drink Controller")
+public interface DrinkController {
 
-    @GetMapping("/drink")
+    @GetMapping("")
     @Operation(summary = "Get drink by name")
     @ApiResponse(responseCode = "200", description = "Drink has been sent")
     @ApiResponse(responseCode = "400", description = "Bad request")
     ResponseEntity<RecipeDto> getDrink(
             @RequestParam("drink_name") String name);
 
-    @PostMapping("/recipe")
-    @Operation(summary = "Create new recipe")
-    @ApiResponse(responseCode = "200", description = "New recipe has been created")
-    @ApiResponse(responseCode = "400", description = "Bad request")
-    ResponseEntity<Void> postRecipe(
-            @Valid @RequestBody RecipeDto recipe);
-
-    @GetMapping("/drink/popular")
+    @GetMapping("/popular")
     @Operation(summary = "Get most popular drink")
     @ApiResponse(responseCode = "200", description = "Most popular drink has been sent")
     @ApiResponse(responseCode = "400", description = "Bad request")
