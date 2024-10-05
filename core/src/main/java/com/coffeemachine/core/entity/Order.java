@@ -2,7 +2,9 @@ package com.coffeemachine.core.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -17,5 +19,8 @@ public class Order {
     @JoinColumn(name = "drink_id", referencedColumnName = "id")
     private Drink drink;
 
-    private Long orderTime;
+    @CreationTimestamp
+    @Column(name = "create_date_time", nullable = false)
+    private LocalDateTime createDateTime;
+
 }

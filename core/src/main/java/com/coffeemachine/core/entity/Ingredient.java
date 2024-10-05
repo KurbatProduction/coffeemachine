@@ -13,7 +13,9 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @Column(name = "name", nullable = false)
     private String name;
 
-    private int quantity;
+    @Column(name = "quantity", nullable = false)
+    private Integer quantity;
 }

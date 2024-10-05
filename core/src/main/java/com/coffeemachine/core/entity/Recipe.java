@@ -21,5 +21,6 @@ public class Recipe {
     @JoinColumn(name = "ingredient_id", referencedColumnName = "id")
     private Ingredient ingredient;
 
-    private int amount;
+    @Column(name = "amount", nullable = false)
+    private Integer amount;
 }
