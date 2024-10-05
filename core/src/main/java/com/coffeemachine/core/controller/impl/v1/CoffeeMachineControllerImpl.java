@@ -11,20 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CoffeeMachineControllerImpl implements CoffeeMachineController {
 
-//    private final CoffeeMachineService coffeeMachineService;
+    private final CoffeeMachineService coffeeMachineService;
 
     @Override
     public ResponseEntity<RecipeDto> getDrink(String name) {
-        return null;
+        return ResponseEntity.ok(coffeeMachineService.getDrink(name));
     }
 
     @Override
     public ResponseEntity<Void> postRecipe(RecipeDto recipe) {
-        return null;
+        coffeeMachineService.createRecipe(recipe);
+        return ResponseEntity.ok().build();
     }
 
     @Override
     public ResponseEntity<RecipeDto> getPopularDrink() {
-        return null;
+        return ResponseEntity.ok(coffeeMachineService.getPopularDrink());
     }
 }
