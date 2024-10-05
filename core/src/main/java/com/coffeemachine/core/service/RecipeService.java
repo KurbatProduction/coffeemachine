@@ -2,11 +2,7 @@ package com.coffeemachine.core.service;
 
 import com.coffeemachine.api.v1.dto.RecipeDto;
 
-public interface CoffeeMachineService {
-
-    RecipeDto getDrink(String name);
+public interface RecipeService {
 
     void createRecipe(RecipeDto recipe);
-
-    RecipeDto getPopularDrink();
 }
