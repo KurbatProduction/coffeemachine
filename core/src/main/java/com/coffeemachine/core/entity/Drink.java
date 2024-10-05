@@ -15,9 +15,9 @@ public class Drink {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @Column(name = "name", nullable = false)
     private String name;
 
-    // Связь с рецептами
     @OneToMany(mappedBy = "drink", cascade = CascadeType.ALL)
     private List<Recipe> recipes;
 }
