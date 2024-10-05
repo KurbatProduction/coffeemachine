@@ -1,13 +1,16 @@
 package com.coffeemachine.api.v1.dto;
 
-import lombok.Builder;
 import lombok.Getter;
 
-@Builder
 @Getter
 public class ExceptionDto {
 
-    private String error;
+    private final String error;
 
-    private String message;
+    private final String message;
+
+    public ExceptionDto(String error, String message) {
+        this.error = error;
+        this.message = message;
+    }
 }

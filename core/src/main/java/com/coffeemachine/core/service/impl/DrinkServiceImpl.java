@@ -1,6 +1,6 @@
 package com.coffeemachine.core.service.impl;
 
-import com.coffeemachine.api.v1.CoffeeMachineExceptionEnum;
+import com.coffeemachine.api.v1.enums.CoffeeMachineExceptionEnum;
 import com.coffeemachine.api.v1.dto.IngredientDto;
 import com.coffeemachine.api.v1.dto.RecipeDto;
 import com.coffeemachine.core.entity.Drink;
@@ -8,6 +8,7 @@ import com.coffeemachine.core.entity.Ingredient;
 import com.coffeemachine.core.entity.Order;
 import com.coffeemachine.core.exception.CoffeeMachineException;
 import com.coffeemachine.core.repository.DrinkRepository;
+import com.coffeemachine.core.repository.IngredientRepository;
 import com.coffeemachine.core.repository.OrderRepository;
 import com.coffeemachine.core.repository.RecipeRepository;
 import com.coffeemachine.core.service.DrinkService;
@@ -24,6 +25,7 @@ public class DrinkServiceImpl implements DrinkService {
     private final DrinkRepository drinkRepository;
     private final OrderRepository orderRepository;
     private final RecipeRepository recipeRepository;
+    private final IngredientRepository ingredientRepository;
 
     @Override
     public RecipeDto getDrink(String name) {
@@ -38,20 +40,16 @@ public class DrinkServiceImpl implements DrinkService {
             if (ingredient.getQuantity() < recipe.getAmount()) {
                 throw new CoffeeMachineException(CoffeeMachineExceptionEnum.NOT_ACCEPTABLE);
             }
-            ingredients.add(IngredientDto.builder()
-                    .name(ingredient.getName())
-                    .amount(recipe.getAmount())
-                    .build());
+            ingredient.setQuantity(ingredient.getQuantity() - recipe.getAmount());
+            ingredients.add(new IngredientDto(ingredient.getName(), recipe.getAmount()));
+            ingredientRepository.save(ingredient);
         });
 
         Order order = new Order();
         order.setDrink(drink);
         orderRepository.save(order);
 
-        return RecipeDto.builder()
-                .name(drink.getName())
-                .ingredients(ingredients)
-                .build();
+        return new RecipeDto(drink.getName(), ingredients);
     }
 
     @Override
@@ -64,15 +62,9 @@ public class DrinkServiceImpl implements DrinkService {
 
         recipeRepository.findByDrink(drink).forEach(recipe -> {
             Ingredient ingredient = recipe.getIngredient();
-            ingredients.add(IngredientDto.builder()
-                    .name(ingredient.getName())
-                    .amount(recipe.getAmount())
-                    .build());
+            ingredients.add(new IngredientDto(ingredient.getName(), recipe.getAmount()));
         });
 
-        return RecipeDto.builder()
-                .name(drink.getName())
-                .ingredients(ingredients)
-                .build();
+        return new RecipeDto(drink.getName(), ingredients);
     }
 }
