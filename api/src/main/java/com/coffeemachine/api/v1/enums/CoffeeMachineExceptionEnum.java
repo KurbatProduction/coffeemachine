@@ -1,4 +1,4 @@
-package com.coffeemachine.api.v1;
+package com.coffeemachine.api.v1.enums;
 
 import lombok.Getter;
 

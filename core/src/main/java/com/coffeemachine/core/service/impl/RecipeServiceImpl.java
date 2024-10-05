@@ -1,6 +1,6 @@
 package com.coffeemachine.core.service.impl;
 
-import com.coffeemachine.api.v1.CoffeeMachineExceptionEnum;
+import com.coffeemachine.api.v1.enums.CoffeeMachineExceptionEnum;
 import com.coffeemachine.api.v1.dto.RecipeDto;
 import com.coffeemachine.core.entity.Drink;
 import com.coffeemachine.core.entity.Ingredient;

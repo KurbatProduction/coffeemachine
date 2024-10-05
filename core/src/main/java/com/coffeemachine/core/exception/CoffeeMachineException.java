@@ -1,6 +1,6 @@
 package com.coffeemachine.core.exception;
 
-import com.coffeemachine.api.v1.CoffeeMachineExceptionEnum;
+import com.coffeemachine.api.v1.enums.CoffeeMachineExceptionEnum;
 import lombok.Getter;
 
 @Getter

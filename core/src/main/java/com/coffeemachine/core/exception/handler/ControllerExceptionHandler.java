@@ -1,6 +1,6 @@
 package com.coffeemachine.core.exception.handler;
 
-import com.coffeemachine.api.v1.CoffeeMachineExceptionEnum;
+import com.coffeemachine.api.v1.enums.CoffeeMachineExceptionEnum;
 import com.coffeemachine.api.v1.dto.ExceptionDto;
 import com.coffeemachine.core.exception.CoffeeMachineException;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +28,7 @@ public class ControllerExceptionHandler {
         CoffeeMachineExceptionEnum coffeeMachineException = CoffeeMachineExceptionEnum.BAD_REQUEST;
         return ResponseEntity
                 .status(coffeeMachineException.getCode())
-                .body(ExceptionDto.builder()
-                        .error(coffeeMachineException.getError())
-                        .message(coffeeMachineException.getMessage())
-                        .build());
+                .body(new ExceptionDto(coffeeMachineException.getError(), coffeeMachineException.getMessage()));
     }
 
     @ExceptionHandler(CoffeeMachineException.class)
@@ -40,10 +37,7 @@ public class ControllerExceptionHandler {
         CoffeeMachineExceptionEnum coffeeMachineException = CoffeeMachineExceptionEnum.valueOf(e.getMessage());
         return ResponseEntity
                 .status(coffeeMachineException.getCode())
-                .body(ExceptionDto.builder()
-                        .error(coffeeMachineException.getError())
-                        .message(coffeeMachineException.getMessage())
-                        .build());
+                .body(new ExceptionDto(coffeeMachineException.getError(), coffeeMachineException.getMessage()));
     }
 
     @ExceptionHandler(Exception.class)
@@ -52,9 +46,6 @@ public class ControllerExceptionHandler {
         CoffeeMachineExceptionEnum coffeeMachineException = CoffeeMachineExceptionEnum.INTERNAL_ERROR;
         return ResponseEntity
                 .status(coffeeMachineException.getCode())
-                .body(ExceptionDto.builder()
-                        .error(coffeeMachineException.getError())
-                        .message(coffeeMachineException.getMessage())
-                        .build());
+                .body(new ExceptionDto(coffeeMachineException.getError(), coffeeMachineException.getMessage()));
     }
 }

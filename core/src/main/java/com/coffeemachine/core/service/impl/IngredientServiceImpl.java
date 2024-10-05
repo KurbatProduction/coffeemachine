@@ -43,8 +43,6 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public IngredientsDto getIngredients() {
         List<IngredientDto> ingredients = ingredientRepository.findAllIngredients();
-        return IngredientsDto.builder()
-                .ingredients(ingredients)
-                .build();
+        return new IngredientsDto(ingredients);
     }
 }
